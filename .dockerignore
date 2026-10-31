@@ -1,0 +1,19 @@
+# Allow only runtime code and public question assets into the build context.
+**
+!Dockerfile
+!alembic.ini
+!backend/
+!backend/*.py
+!backend/requirements.txt
+!backend/migrations/
+!backend/migrations/*.py
+!backend/migrations/versions/
+!backend/migrations/versions/*.py
+!scripts/
+!scripts/*.py
+!data/
+!data/questions.json
+!data/simple-metadata.json
+!data/assets/
+!data/assets/*.png
+!data/assets/.gitkeep

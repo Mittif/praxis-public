@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+  <title>Praxis · Kinetic Pop Brutalism 七格漫画底板</title>
+  <desc>参考用户提供的漫画网格重绘。七个可独立编辑的矢量分镜，主描边统一为 4px。</desc>
+  <defs>
+    <pattern id="dots" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="2" fill="#17171f"/>
+    </pattern>
+    <path id="hero" d="M95 100 1395 46 1338 295 135 365Z"/>
+    <path id="note" d="M1428 72 1750 101 1708 485 1355 430Z"/>
+    <path id="mobile" d="M54 465 400 405 465 803 110 857Z"/>
+    <path id="banks" d="M440 360 1280 308 1258 823 491 810Z"/>
+    <path id="feedback" d="M1340 470 1760 555 1690 821 1286 760Z"/>
+    <path id="setup" d="M73 874 912 900 909 1124 85 1153Z"/>
+    <path id="review" d="M976 883 1745 851 1724 1150 944 1113Z"/>
+    <g id="spark"><path d="M0-18Q2-2 14 0 2 2 0 18-2 2-14 0-2-2 0-18Z"/></g>
+    <g id="star"><path d="m0-44 13 27 32-9-17 27 19 24-31-4-11 30L-6 22l-33 7 18-28-15-27 31 10Z"/></g>
+  </defs>
+
+  <path fill="#8985e9" d="M0 0h1800v1200H0z"/>
+  <g fill="#17171f">
+    <path d="M37 30 668 194 528 250 8 148Z"/>
+    <path d="m1074 124 356-109-25 291-183 90Z"/>
+    <path d="M0 304 1752 832 1800 1059 0 543Z"/>
+    <path d="m0 952 286-126 832 235-691 113 109-107Z"/>
+    <path d="m1238 376 562-189v242l-215 32Z"/>
+  </g>
+  <g fill="#deffa2">
+    <path d="M114 0 758 168 264 275Z"/>
+    <path d="m1515 82 285-66-63 200Z"/>
+    <path d="m27 410 349-200 204 525-266-51Z"/>
+    <path d="m529 1003 719-250 354 77-673 357Z"/>
+  </g>
+  <g fill="#f38bde">
+    <path d="m1234 301 416-80 150 84-199 28-87 205Z"/>
+    <path d="m75 742 475-212-25 248-351 208Z"/>
+  </g>
+  <g fill="url(#dots)">
+    <path d="M175 0h330v105H175z"/>
+    <path d="M1490 0h310v84h-310z"/>
+    <path d="M0 1024h187v176H0z"/>
+    <path d="M1739 684h61v167h-61z"/>
+  </g>
+  <g stroke="#17171f" stroke-width="1.5" fill="none">
+    <path d="M559 90C786-79 815 13 617 115"/>
+    <path d="M1574 1178c158-18 212-59 185-146"/>
+  </g>
+
+  <!-- Seven independent panel paths. Colored offsets never duplicate the ink outline. -->
+  <g transform="translate(10 15)" fill="#f38bde"><use href="#hero"/><use href="#note"/><use href="#banks"/><use href="#review"/></g>
+  <g transform="translate(-12 13)" fill="#deffa2"><use href="#mobile"/><use href="#feedback"/><use href="#setup"/></g>
+  <g fill="#fffdf4" stroke="#17171f" stroke-width="4" stroke-linejoin="miter">
+    <use href="#hero"/><use href="#note"/><use href="#mobile"/><use href="#banks"/><use href="#feedback"/><use href="#setup"/><use href="#review"/>
+  </g>
+
+  <!-- Halftone stays in the corners, outside the typesetting safe areas. -->
+  <g fill="url(#dots)">
+    <path d="m139 281 16 59 133-7Z"/>
+    <path d="m1529 452 164 25 12-94Z"/>
+    <path d="m115 761 10 74 115-17Z"/>
+    <path d="m97 1069 2 67 111-4Z"/>
+    <path d="m1582 1132 127 5 6-88Z"/>
+  </g>
+
+  <g stroke="#17171f" stroke-width="4" stroke-linejoin="miter">
+    <use href="#star" transform="translate(110 112) scale(1.52)" fill="#deffa2" stroke-width="2.63"/>
+    <use href="#star" transform="translate(111 114) scale(.94)" fill="#f38bde" stroke-width="4.26"/>
+    <path fill="#f38bde" d="m1748 631-29 50 25-7-23 58 58-77-29 7Z"/>
+    <path fill="#f38bde" d="m54 1001 53 13-47 43 12-33Z"/>
+    <path fill="#e5ccf7" d="m1451 53 86 9-3 29-86-9Z"/>
+    <path fill="#f38bde" d="m28 462 80-17 6 28-80 17Z"/>
+  </g>
+  <g fill="#deffa2"><use href="#spark" transform="translate(1324 388)"/><use href="#spark" transform="translate(42 343)"/></g>
+  <g fill="#17171f"><use href="#spark" transform="translate(1774 437) scale(.8)"/></g>
+  <g fill="#f38bde"><use href="#spark" transform="translate(1771 909) scale(.7)"/></g>
+  <g fill="#17171f"><circle cx="1169" cy="26" r="5"/><circle cx="1197" cy="26" r="5"/><circle cx="1225" cy="26" r="5"/></g>
+  <g fill="#8985e9"><circle cx="27" cy="590" r="4"/><circle cx="27" cy="613" r="4"/><circle cx="27" cy="636" r="4"/><circle cx="27" cy="659" r="4"/></g>
+  <path d="m435 826-18 20 22 6m845-55 22 18-25 9" fill="none" stroke="#f38bde" stroke-width="8"/>
+</svg>

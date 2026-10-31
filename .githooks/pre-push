@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+python3 scripts/check_publication.py
+python3 scripts/check_secrets.py

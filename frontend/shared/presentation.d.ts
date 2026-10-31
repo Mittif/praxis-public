@@ -1,0 +1,11 @@
+export type DisplayOption = { id: string; text: string; label?: string; source_label?: string };
+export type ExplanationPart = { type: 'text'; text: string } | { type: 'option_ref'; option_ids: string[]; source_text: string };
+export type Explanation = { explanation: string; explanation_mode?: 'mapped' | 'original'; explanation_parts?: ExplanationPart[] };
+export const PHONE_QUERY: string;
+export const DESKTOP_PAGE_SIZE: number;
+export const PHONE_PAGE_SIZE: number;
+export function displayOptionLabel(option: DisplayOption, index: number): string;
+export function explanationView(question: { options: DisplayOption[] }, result: Explanation): { text: string; mapped: boolean; hasReferences: boolean };
+export function recordQuestion<T extends { id: string; stem: string; material?: string; options: DisplayOption[] }>(current: T, result?: { question?: T } | null): T;
+export type PageInfo = { page: number; pages: number; start: number; end: number; total: number; size: number };
+export function pageInfo(total: number, anchor: number, size: number): PageInfo;

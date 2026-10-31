@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f6fb"><title>Praxis · 简洁模式</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header>
+  <div class="hd">
+    <div class="logo"><span class="dot"></span>Praxis · 简洁模式</div>
+    <div id="tabs" class="tabs" role="tablist" aria-label="学习模式"></div>
+    <button class="iconbtn" id="themeBtn">🌙 夜间</button>
+  </div>
+</header>
+
+<section id="authWrap" class="wrap hidden"></section>
+<div id="appWrap" class="wrap hidden">
+  <div class="sync-line small muted"><div class="sync-details"><span id="accountName"></span><span>与主站同步 · 错题连续答对两次后巩固</span></div><div class="sync-actions"><a href="/">主站 ↗</a><button class="iconbtn" id="logoutBtn">退出</button></div></div>
+<!-- 筛选 -->
+  <details class="card filter-card" id="filterPanel">
+    <summary class="filter-toggle"><span class="filter-heading"><strong>题目筛选</strong><span class="small muted" id="filterSummary"></span></span><span class="filter-disclosure" aria-hidden="true"><span class="when-closed">展开</span><span class="when-open">收起</span><i></i></span></summary>
+    <div class="pad filter-content">
+    <div class="filter-row"><span class="filter-label">题集</span><div class="chips" id="seriesChips" role="group" aria-label="题集"></div></div>
+    <div class="filter-row">
+      <span class="filter-label">科目</span>
+      <div class="chips" id="subjectChips" role="group" aria-label="科目"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">题型</span>
+      <div class="chips" id="typeChips" role="group" aria-label="题型"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">卷别</span>
+      <div class="chips" id="setChips" role="group" aria-label="卷别"></div>
+    </div>
+    <div class="filter-fields">
+      <label class="field module-field"><span class="field-label">模块</span><span class="select-control"><select id="moduleSel" aria-label="模块"></select></span></label>
+      <label class="field"><span class="field-label">题目范围</span><span class="select-control"><select id="scopeSel" aria-label="题目范围"></select></span></label>
+      <label class="field"><span class="field-label">出题顺序</span><span class="select-control"><select id="orderSel" aria-label="题目顺序"></select></span></label>
+    </div>
+    <div class="filter-search"><label class="search-control"><span class="field-label">搜索</span><input type="search" id="searchBox" aria-label="搜索题目" placeholder="题干、材料或选项关键词"></label><span class="small muted" id="miniStat"></span></div>
+    </div>
+  </details>
+
+  <!-- 刷题 -->
+  <section id="quizWrap" class="hidden">
+    <div class="card pad section-toolbar">
+      <div class="quiz-toolbar">
+        <div class="progress"><i id="progFill"></i></div>
+        <button class="btn small" id="gridBtn" aria-controls="gridBox" aria-expanded="false">题号 ▾</button>
+        <button class="btn small" id="reshuffleBtn">重新随机</button>
+      </div>
+      <div class="quiz-position small muted"><span id="progText"></span><button class="btn ghost small hidden" id="resumeBtn">继续上次练习 →</button></div>
+      <div id="gridBox" class="collapse-shell" aria-hidden="true"><div class="collapse-inner" id="gridContent"></div></div>
+    </div>
+    <div class="card pad" id="qcard"></div>
+  </section>
+
+  <!-- 背题 -->
+  <section id="reviewWrap" class="hidden">
+    <div class="card pad section-toolbar">
+      <div class="panel-toolbar">
+        <strong>背题模式</strong>
+        <span class="spacer"></span>
+        <button class="btn small" id="maskBtn">遮盖答案</button>
+      </div>
+      <div class="review-progress">
+        <div class="progress" style="flex:1"><i id="revProgFill"></i></div>
+        <span class="small muted" id="revProgText"></span>
+      </div>
+      <div class="small muted section-note">一题一题过：题目 → 答案 → 解析；点「遮盖答案」可先自测再看。可用 ← → 键翻题。</div>
+    </div>
+    <div class="card pad" id="revCard"></div>
+  </section>
+
+  <!-- 错题本 -->
+  <section id="wrongWrap" class="hidden">
+    <div class="card pad section-toolbar">
+      <div class="panel-toolbar">
+        <div class="toolbar-title"><strong>错题本</strong><span class="small muted" id="wrongCount"></span></div>
+        <div class="toolbar-actions"><button class="btn small primary" id="wrongRedoBtn">重做错题</button><button class="btn small" id="wrongClearBtn">查看已巩固</button></div>
+      </div>
+    </div>
+    <div id="wrongPagesTop"></div>
+    <div class="card" id="wrongList" tabindex="-1" aria-label="本页错题"></div>
+    <div id="wrongPagesBottom"></div>
+  </section>
+
+  <!-- 统计 -->
+  <section id="statsWrap" class="hidden">
+    <div class="card pad section-toolbar">
+      <div class="stats" id="statCards"></div>
+    </div>
+    <div class="card pad section-toolbar">
+      <strong>中级基础 · 各模块进度</strong>
+      <div id="statBase" style="margin-top:8px"></div>
+    </div>
+    <div class="card pad section-toolbar">
+      <strong>中级金融 · 各模块进度</strong>
+      <div id="statFin" style="margin-top:8px"></div>
+    </div>
+    <div class="card pad">
+      <strong>数据管理</strong>
+      <div class="data-actions">
+        <button class="btn" id="exportBtn">导出记录</button>
+        <button class="btn" id="importBtn">导入记录</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+        <span class="spacer"></span>
+        <button class="btn" id="resetBtn">重置筛选</button>
+      </div>
+      <div class="small muted section-note">答题、错题和收藏保存在当前账号，与主站共享。导入只补充尚无作答记录的题目，已有主站记录保留。重新练习会新增作答，不删除历史。</div>
+    </div>
+  </section>
+
+  <div class="footer" id="catalogFooter"></div>
+</div>
+
+<div id="toast" role="status" aria-live="polite" class="hidden"></div>
+
+
+<script type="module" src="./app.js"></script>
+</body></html>

@@ -1,0 +1,57 @@
+{
+  "images": [
+    {
+      "file": "kpb-panels.svg",
+      "loaded": true
+    },
+    {
+      "file": "../brand/praxis-mark.svg",
+      "loaded": true
+    },
+    {
+      "file": "banks.png",
+      "loaded": true
+    },
+    {
+      "file": "mobile.png",
+      "loaded": true
+    },
+    {
+      "file": "feedback-paper.png",
+      "loaded": true
+    },
+    {
+      "file": "setup-card.png",
+      "loaded": true
+    },
+    {
+      "file": "continue.png",
+      "loaded": true
+    }
+  ],
+  "dimensions": {
+    "width": 1800,
+    "height": 1200
+  },
+  "clippedText": [],
+  "outsidePanels": [],
+  "previews": [
+    {
+      "viewport": 1440,
+      "width": 1440,
+      "height": 960,
+      "horizontalOverflow": false
+    },
+    {
+      "viewport": 390,
+      "width": 390,
+      "height": 260,
+      "horizontalOverflow": false
+    }
+  ],
+  "errors": [],
+  "exportSize": {
+    "width": 3600,
+    "height": 2400
+  }
+}

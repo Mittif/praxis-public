@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praxis · 一题一题，把进步攒起来</title>
+  <style>
+    :root {
+      --ink: #17171f;
+      --lavender: #8985e9;
+      --cream: #fffdf4;
+      --lime: #deffa2;
+      --pink: #f38bde;
+      --lilac: #e5ccf7;
+      --mint: #b6f0e6;
+      --stroke: 2px;
+      --shadow: 4px 4px 0 var(--ink);
+      color: var(--ink);
+      font-family: "Helvetica Neue", "PingFang SC", "Heiti SC", "Arial Unicode MS", sans-serif;
+      font-synthesis: weight;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--lavender); }
+    .poster-viewport { width: min(100%, 1800px); aspect-ratio: 3 / 2; margin: 0 auto; overflow: hidden; }
+    .poster { position: relative; width: 1800px; height: 1200px; margin: 0; isolation: isolate; overflow: hidden; transform: scale(var(--poster-scale, 1)); transform-origin: top left; }
+    .panel-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+    h1, h2, p { margin: 0; }
+    h2 { font-size: 28px; font-weight: 850; letter-spacing: -.8px; line-height: 1.25; }
+    .eyebrow { font: 600 10px/1.4 "SFMono-Regular", Consolas, monospace; letter-spacing: 1.8px; }
+    .index { display: inline-grid; place-items: center; min-width: 26px; height: 21px; padding: 0 5px; margin-right: 9px; color: var(--cream); background: var(--ink); font: 11px/1 monospace; letter-spacing: 0; }
+    .caption { font-size: 15px; line-height: 1.7; }
+    .chip { display: inline-block; padding: 6px 12px; border: var(--stroke) solid var(--ink); background: var(--lime); box-shadow: 3px 3px 0 var(--ink); font-size: 12px; line-height: 1; font-weight: 750; }
+    .brand { position: absolute; left: 188px; top: 101px; width: 400px; }
+    .brand-row { display: flex; align-items: center; gap: 15px; }
+    .brand img { width: 79px; height: 79px; }
+    .wordmark { font: 900 91px/1.4 "Arial Black", "Helvetica Neue", sans-serif; letter-spacing: -7px; }
+    .brand .eyebrow { margin: 16px 0 0 6px; font-size: 9px; letter-spacing: 2px; }
+    .brand .caption { margin: 23px 0 0 6px; font-weight: 650; font-size: 17px; }
+    .hero-copy { position: absolute; left: 688px; top: 108px; width: 575px; }
+    .hero-copy .eyebrow { letter-spacing: 2.4px; }
+    h1 { margin-top: 14px; font-size: 57px; line-height: 1.18; font-weight: 900; letter-spacing: -2px; }
+    h1 .highlight { position: relative; display: inline-block; }
+    h1 .highlight::before { content: ""; position: absolute; inset: 33px -7px -1px -5px; background: var(--lime); z-index: -1; }
+    .hero-copy .caption { margin-top: 15px; font-size: 15px; }
+
+    .note { position: absolute; left: 1432px; top: 136px; width: 242px; }
+    .note .eyebrow { font-size: 9px; letter-spacing: 1px; }
+    .note h2 { font-size: 38px; line-height: 1.3; margin-top: 20px; letter-spacing: -1.4px; }
+    .note .highlight { display: inline-block; padding: 0 6px; margin-left: -6px; background: var(--pink); }
+    .note .caption { margin-top: 17px; font-size: 14px; line-height: 1.8; }
+    .note .chip { margin-top: 19px; background: var(--lime); }
+
+    .bank-title { position: absolute; top: 369px; left: 513px; width: 675px; display: flex; align-items: center; justify-content: space-between; }
+    .bank-title h2 { font-size: 29px; }
+    .bank-title .eyebrow { margin-bottom: 8px; }
+    .bank-title .chip { margin-top: 18px; background: var(--lilac); }
+    .bank-shot { position: absolute; left: 524px; top: 444px; width: 632px; height: auto; display: block; }
+
+    .mobile-title { position: absolute; left: 126px; top: 481px; }
+    .mobile-title h2 { font-size: 25px; margin-top: 10px; }
+    .mobile-screen { position: absolute; left: 206px; top: 551px; width: 104px; overflow: hidden; border: var(--stroke) solid var(--ink); background: var(--cream); box-shadow: var(--shadow); }
+    .mobile-screen img { display: block; width: 100%; }
+    .mobile-aside { position: absolute; left: 334px; top: 603px; writing-mode: vertical-rl; font-size: 11px; line-height: 1.7; letter-spacing: 2px; }
+
+    .feedback-title { position: absolute; left: 1351px; top: 536px; }
+    .feedback-title h2 { margin-top: 9px; font-size: 26px; }
+    .feedback-shot { position: absolute; left: 1336px; top: 614px; width: 351px; height: auto; }
+
+    .setup-title { position: absolute; left: 127px; top: 924px; width: 375px; }
+    .setup-title h2 { margin-top: 12px; font-size: 31px; }
+    .sizes { display: flex; gap: 11px; margin-top: 19px; font: 800 27px/1 "Helvetica Neue", sans-serif; }
+    .sizes span { padding: 7px 10px; border: var(--stroke) solid var(--ink); background: var(--cream); }
+    .sizes span:first-child { background: var(--pink); box-shadow: 3px 3px 0 var(--ink); }
+    .setup-title .caption { margin-top: 15px; font-size: 13px; }
+    .setup-image { position: absolute; left: 579px; top: 928px; width: 145px; height: auto; border: var(--stroke) solid var(--ink); box-shadow: var(--shadow); }
+    .setup-side { position: absolute; left: 753px; top: 969px; width: 111px; }
+    .setup-side b { font-size: 19px; line-height: 1.55; }
+    .setup-side p { font-size: 11px; line-height: 1.7; margin-top: 10px; }
+
+    .review { position: absolute; left: 1010px; top: 903px; width: 639px; }
+    .review h2 { margin-top: 8px; font-size: 28px; }
+    .review-flow { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+    .review-flow .chip { font-size: 12px; padding: 9px 13px; background: var(--lilac); box-shadow: none; }
+    .review-flow .chip:last-child { background: var(--mint); }
+    .review-flow .arrow { font-size: 21px; font-weight: 750; }
+    .review .caption { margin-top: 9px; font-size: 13px; line-height: 1.5; }
+    .review .resume { display: block; width: 520px; height: auto; margin-top: 8px; }
+
+    .meta { position: absolute; left: 106px; right: 96px; bottom: 18px; display: flex; justify-content: space-between; font-size: 9px; line-height: 1; letter-spacing: .3px; }
+    .meta span:last-child { font: 9px/1 monospace; letter-spacing: 1.4px; }
+    /* Scale the complete print composition; its source keeps a logical reading order. */
+    @media print {
+      @page { size: 1800px 1200px; margin: 0; }
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .poster-viewport { width: 1800px; }
+      .poster { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-viewport">
+  <main class="poster" aria-label="Praxis 产品海报：练习、回顾，让进步发生。">
+    <img class="panel-art" src="kpb-panels.svg" alt="" aria-hidden="true">
+    <header>
+      <div class="brand">
+        <div class="brand-row"><img src="../brand/praxis-mark.svg" alt="Praxis 标识"><div class="wordmark">praxis</div></div>
+        <p class="eyebrow">A LITTLE PRACTICE. EVERY DAY.</p>
+        <p class="caption">练习、回顾，让进步发生。</p>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR DAILY PRACTICE, REIMAGINED.</p>
+        <h1>一题一题，<br>把<span class="highlight">进步攒起来。</span></h1>
+        <p class="caption">选好一轮，认真练习，让每一次回顾都有收获。</p>
+      </div>
+    </header>
+
+    <aside class="note" aria-label="产品特点">
+      <p class="eyebrow">SMALL STEPS. REAL PROGRESS.</p>
+      <h2>按自己的<br><span class="highlight">节奏来。↗</span></h2>
+      <p class="caption">少量练习，也算进步。<br>随时暂停，下次接着练。</p>
+      <span class="chip">开源 · 可自托管</span>
+    </aside>
+
+    <section aria-label="01 选择练习">
+      <div class="bank-title">
+        <div><p class="eyebrow"><span class="index">01</span>FIND YOUR NEXT CHALLENGE</p><h2>选一组题，开始今天的练习。</h2></div>
+        <span class="chip">专项 / 随机</span>
+      </div>
+      <img class="bank-shot" src="banks.png" alt="真实题库界面：经济基础和金融各有真题速攻、高频错题专项，并显示覆盖进度。">
+    </section>
+
+    <section aria-label="02 手机练习">
+      <div class="mobile-title"><p class="eyebrow"><span class="index">02</span>TAKE IT WITH YOU</p><h2>走到哪，练到哪。</h2></div>
+      <div class="mobile-screen"><img src="mobile.png" alt="手机端练习界面：清晰的题干、大尺寸答案选项。"></div>
+      <p class="mobile-aside">桌面 × 手机<br>同一份进度，随时接续。</p>
+    </section>
+
+    <section aria-label="03 即时反馈">
+      <div class="feedback-title"><p class="eyebrow"><span class="index">03</span>LEARN FROM EVERY ANSWER</p><h2>答完，就把这题弄懂。</h2></div>
+      <img class="feedback-shot" src="feedback-paper.png" alt="真实作答反馈：显示本轮正确选项和题目解析。">
+    </section>
+
+    <section aria-label="04 自定练习节奏">
+      <div class="setup-title"><p class="eyebrow"><span class="index">04</span>MAKE IT YOUR OWN</p><h2>这一轮，由你决定。</h2><div class="sizes" aria-label="每轮可选 20、30 或 50 题"><span>20</span><span>30</span><span>50</span></div><p class="caption">跨来源混合 · 本轮不重复 · 优先巩固错题</p></div>
+      <img class="setup-image" src="setup-card.png" alt="真实练习设置界面：科目筛选和每轮题数选择。">
+      <div class="setup-side"><b>换种方式，<br>接着练。</b><p>专项打磨<br>或随机挑战 ↗</p></div>
+    </section>
+
+    <section class="review" aria-label="05 错题回顾与练习记录">
+      <p class="eyebrow"><span class="index">05</span>PRACTICE. REVIEW. REPEAT.</p>
+      <h2>把错题，变成会的题。</h2>
+      <div class="review-flow"><span class="chip">答错，进入待巩固</span><span class="arrow" aria-hidden="true">→</span><span class="chip">连续答对 2 次，移出</span></div>
+      <p class="caption">练习进度、作答历史都保留。下次回来，接着上次的自己。</p>
+      <img class="resume" src="continue.png" alt="真实继续练习入口：保留上轮进度，一键接续。">
+    </section>
+
+    <footer class="meta"><span>真实界面截图 · 自编演示数据 · 每一次练习，都在靠近更好的自己。</span><span>PRAXIS / SELF-HOSTED PRACTICE APP</span></footer>
+  </main>
+  </div>
+  <script>
+    const viewport = document.querySelector('.poster-viewport');
+    const fitPoster = () => viewport.style.setProperty('--poster-scale', viewport.clientWidth / 1800);
+    new ResizeObserver(fitPoster).observe(viewport);
+    fitPoster();
+  </script>
+</body>
+</html>
